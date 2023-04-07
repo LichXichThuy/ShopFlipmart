@@ -70,4 +70,9 @@ public class ProductService implements ProductServiceImp {
         String question = productRepository.getQuestion(userId);
         return question;
     }
+
+    @Override
+    public boolean ask(String content, Product productId, User userId) {
+        return productRepository.ask(content,productId,userId) >= 1;
+    }
 }

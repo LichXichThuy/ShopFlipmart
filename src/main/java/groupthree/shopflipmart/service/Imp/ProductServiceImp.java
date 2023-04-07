@@ -17,4 +17,6 @@ public interface ProductServiceImp {
     public List<ProductDTO> showCompare(User userId);
 
     public String showQuestion(User userId);
+    @Transactional
+    public boolean ask(String content, Product productId, User userId);
 }

@@ -32,6 +32,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 
     //Tag: Private question about product
     //Show Question
-    @Query("select p.tag from wishlist w join product p on w.product = p.id where w.user = ?1")
+    @Query("select q.content from question q where q.userId = ?1")
     public String getQuestion(User userId);
+
+    @Modifying
+    @Query("update question q set q.content = ?1 where q.productId = ?2 and q.userId = ?3")
+    public int ask(String content, Product productId, User userId);
 }
