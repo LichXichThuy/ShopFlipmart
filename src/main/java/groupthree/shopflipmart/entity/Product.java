@@ -61,6 +61,40 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<OrderProduct> orderProduct;
 
+    @OneToMany(mappedBy = "product")
+    private Set<Question> questions;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", desc='" + desc + '\'' +
+                ", tag='" + tag + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", voteEver=" + voteEver +
+                ", amount=" + amount +
+                ", inputDate=" + inputDate +
+                ", category=" + category +
+                ", image=" + image +
+                ", compares1=" + compares1 +
+                ", compares2=" + compares2 +
+                ", compares3=" + compares3 +
+                ", rating=" + rating +
+                ", wishlist=" + wishlist +
+                ", orderProduct=" + orderProduct +
+                '}';
+    }
+
+    public Set<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
+    }
+
     public int getId() {
         return id;
     }

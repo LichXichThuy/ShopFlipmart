@@ -44,6 +44,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Orders> orders;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Question> questions;
+
+    public Set<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(Set<Question> questions) {
+        this.questions = questions;
+    }
+
     public int getId() {
         return id;
     }
