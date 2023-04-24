@@ -30,22 +30,29 @@ public class FilterChain extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse resp, javax.servlet.FilterChain filterChain) throws ServletException, IOException {
         Cookie[] cookies = req.getCookies();
         boolean authenticated = false;
-        try {
-            if (cookies != null && cookies.length > 0){
-                for (Cookie cookie : cookies){
-                    if (cookie.getName().equals("username")){
-                        authenticated = true;
-                        break;
-                    }
-                }
-                if (authenticated){
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("","",new ArrayList<>());
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (cookies != null && cookies.length > 0) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("username")) {
+                    System.out.println("Check");
+                    authenticated = true;
+                    break;
                 }
             }
         }
-        catch (Exception e){
-            resp.sendRedirect(req.getContextPath() + "/login");
+        if (authenticated){
+            System.out.println("yes");
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("","",new ArrayList<>());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+        }
+        else {
+            // Check if current request is already the login page
+            String requestURI = req.getRequestURI();
+            String loginPageURI = req.getContextPath() + "/login";
+            if (!requestURI.equals(loginPageURI)) {
+                System.out.println("no");
+                resp.sendRedirect(loginPageURI);
+                return;
+            }
         }
         filterChain.doFilter(req,resp);
     }
