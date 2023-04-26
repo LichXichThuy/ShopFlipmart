@@ -1,6 +1,7 @@
 package groupthree.shopflipmart.service;
 
 import groupthree.shopflipmart.entity.Product;
+import groupthree.shopflipmart.entity.Question;
 import groupthree.shopflipmart.entity.User;
 import groupthree.shopflipmart.repository.QuestionRepo;
 import groupthree.shopflipmart.service.Imp.QuestionServiceImp;
@@ -13,8 +14,19 @@ public class QuestionService implements QuestionServiceImp {
     @Autowired
     QuestionRepo questionRepo;
 
+
     @Override
-    public boolean ask(String content, Product product, User user) {
-        return questionRepo.ask(content,product,user) >= 1;
+    public boolean saveQuestion(String content, Product product, User user) {
+        Question question = new Question();
+        question.setContent(content);
+        question.setProduct(product);
+        question.setUser(user);
+        try {
+            questionRepo.save(question);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error save Question: " + e.getMessage());
+            return false;
+        }
     }
 }

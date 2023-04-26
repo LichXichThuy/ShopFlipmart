@@ -5,4 +5,6 @@ import groupthree.shopflipmart.entity.User;
 
 public interface WishlistServiceImp {
     boolean addWishList(Product product, User user);
+
+    boolean deleteByProductAndUser(Product product, User user);
 }

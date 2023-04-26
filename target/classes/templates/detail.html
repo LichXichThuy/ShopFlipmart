@@ -9,7 +9,7 @@
 	    <meta name="keywords" content="MediaCenter, Template, eCommerce">
 	    <meta name="robots" content="all">
 
-	    <title>Flipmart premium HTML5 & CSS3 Template</title>
+	    <title>Product detail</title>
 
 	    <!-- Bootstrap Core CSS -->
 	    <link rel="stylesheet" href="assets\css\bootstrap.min.css">
@@ -23,9 +23,7 @@
 		<link rel="stylesheet" href="assets\css\rateit.css">
 		<link rel="stylesheet" href="assets\css\bootstrap-select.min.css">
         <link href="assets\css\lightbox.css" rel="stylesheet">
-		
 
-		
 		<!-- Icons/Glyphs -->
 		<link rel="stylesheet" href="assets\css\font-awesome.css">
 
@@ -36,7 +34,7 @@
 
 
 	</head>
-    <body class="cnt-home">
+	<body class="cnt-home">
 		<!-- ============================================== HEADER ============================================== -->
 <div th:insert="include/homeHeader::header"></div>
 
@@ -64,261 +62,55 @@
     
     
     	<!-- ============================================== HOT DEALS ============================================== -->
-<div class="sidebar-widget hot-deals wow fadeInUp outer-top-vs">
-	<h3 class="section-title">hot deals</h3>
-	<div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-xs">
-		
-														<div class="item">
-					<div class="products">
-						<div class="hot-deal-wrapper">
-							<div class="image">
-								<img src="assets\images\hot-deals\p5.jpg" alt="">
-							</div>
-							<div class="sale-offer-tag"><span>35%<br>off</span></div>
-							<div class="timing-wrapper">
-								<div class="box-wrapper">
-									<div class="date box">
-										<span class="key">120</span>
-										<span class="value">Days</span>
+					<div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
+						<h3 class="section-title">hot deals</h3>
+						<div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
+							<div class="item" th:each="product:${listTopDiscount}">
+								<div class="products">
+									<div class="hot-deal-wrapper">
+										<div class="image"><a th:href="@{/product(productID=${product.id})}"><img th:each="image:${listImageGroupProduct}" th:if="${image.productId == product.id}" th:src="${image.src}" alt=""> </a> </div>
+										<div class="sale-offer-tag"><span th:text="${product.discount}">49%</span><br>
+											<span>off</span></div>
 									</div>
-								</div>
-				                
-				                <div class="box-wrapper">
-									<div class="hour box">
-										<span class="key">20</span>
-										<span class="value">HRS</span>
-									</div>
-								</div>
+									<!-- /.hot-deal-wrapper -->
 
-				                <div class="box-wrapper">
-									<div class="minutes box">
-										<span class="key">36</span>
-										<span class="value">MINS</span>
-									</div>
-								</div>
+									<div class="product-info text-left m-t-20">
+										<h3 class="name"><a th:href="@{/product(productID=${product.id})}" th:text="${product.name}"></a></h3>
+										<div class="rating rateit-small" th:data-rateit-value="${product.voteEver/1}"></div>
+										<div class="product-price"> $<span class="price" th:text="${product.price * (100 - product.discount) / 100}">  </span> $<span class="price-before-discount" th:text="${product.price}"></span> </div>
+										<!-- /.product-price -->
 
-				                <div class="box-wrapper hidden-md">
-									<div class="seconds box">
-										<span class="key">60</span>
-										<span class="value">SEC</span>
 									</div>
+									<!-- /.product-info -->
+
+									<div class="cart clearfix animate-effect">
+										<div class="action">
+											<div class="add-cart-button btn-group">
+												<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
+												<button th:onclick="'addCart(' + ${product.id} + ')'"  class="btn btn-primary cart-btn" type="button">Add to cart</button>
+											</div>
+										</div>
+										<!-- /.action -->
+									</div>
+									<!-- /.cart -->
 								</div>
 							</div>
-						</div><!-- /.hot-deal-wrapper -->
+						</div>
+						<!-- /.sidebar-widget -->
+					</div>
+<!-- ============================================== HOT DEALS: END ============================================== -->
 
-						<div class="product-info text-left m-t-20">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-
-							<div class="product-price">	
-								<span class="price">
-									$600.00
-								</span>
-									
-							    <span class="price-before-discount">$800.00</span>					
-							
-							</div><!-- /.product-price -->
-							
-						</div><!-- /.product-info -->
-
-						<div class="cart clearfix animate-effect">
-							<div class="action">
-								
-								<div class="add-cart-button btn-group">
-									<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-										<i class="fa fa-shopping-cart"></i>													
-									</button>
-									<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-															
-								</div>
-								
-							</div><!-- /.action -->
-						</div><!-- /.cart -->
-					</div>	
-					</div>		        
-													<div class="item">
-					<div class="products">
-						<div class="hot-deal-wrapper">
-							<div class="image">
-								<img src="assets\images\products\p6.jpg" alt="">
-							</div>
-							<div class="sale-offer-tag"><span>35%<br>off</span></div>
-							<div class="timing-wrapper">
-								<div class="box-wrapper">
-									<div class="date box">
-										<span class="key">120</span>
-										<span class="value">Days</span>
-									</div>
-								</div>
-				                
-				                <div class="box-wrapper">
-									<div class="hour box">
-										<span class="key">20</span>
-										<span class="value">HRS</span>
-									</div>
-								</div>
-
-				                <div class="box-wrapper">
-									<div class="minutes box">
-										<span class="key">36</span>
-										<span class="value">MINS</span>
-									</div>
-								</div>
-
-				                <div class="box-wrapper hidden-md">
-									<div class="seconds box">
-										<span class="key">60</span>
-										<span class="value">SEC</span>
-									</div>
-								</div>
-							</div>
-						</div><!-- /.hot-deal-wrapper -->
-
-						<div class="product-info text-left m-t-20">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-
-							<div class="product-price">	
-								<span class="price">
-									$600.00
-								</span>
-									
-							    <span class="price-before-discount">$800.00</span>					
-							
-							</div><!-- /.product-price -->
-							
-						</div><!-- /.product-info -->
-
-						<div class="cart clearfix animate-effect">
-							<div class="action">
-								
-								<div class="add-cart-button btn-group">
-									<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-										<i class="fa fa-shopping-cart"></i>													
-									</button>
-									<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-															
-								</div>
-								
-							</div><!-- /.action -->
-						</div><!-- /.cart -->
-					</div>	
-					</div>		        
-													<div class="item">
-					<div class="products">
-						<div class="hot-deal-wrapper">
-							<div class="image">
-								<img src="assets\images\products\p7.jpg" alt="">
-							</div>
-							<div class="sale-offer-tag"><span>35%<br>off</span></div>
-							<div class="timing-wrapper">
-								<div class="box-wrapper">
-									<div class="date box">
-										<span class="key">120</span>
-										<span class="value">Days</span>
-									</div>
-								</div>
-				                
-				                <div class="box-wrapper">
-									<div class="hour box">
-										<span class="key">20</span>
-										<span class="value">HRS</span>
-									</div>
-								</div>
-
-				                <div class="box-wrapper">
-									<div class="minutes box">
-										<span class="key">36</span>
-										<span class="value">MINS</span>
-									</div>
-								</div>
-
-				                <div class="box-wrapper hidden-md">
-									<div class="seconds box">
-										<span class="key">60</span>
-										<span class="value">SEC</span>
-									</div>
-								</div>
-							</div>
-						</div><!-- /.hot-deal-wrapper -->
-
-						<div class="product-info text-left m-t-20">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-
-							<div class="product-price">	
-								<span class="price">
-									$600.00
-								</span>
-									
-							    <span class="price-before-discount">$800.00</span>					
-							
-							</div><!-- /.product-price -->
-							
-						</div><!-- /.product-info -->
-
-						<div class="cart clearfix animate-effect">
-							<div class="action">
-								
-								<div class="add-cart-button btn-group">
-									<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-										<i class="fa fa-shopping-cart"></i>													
-									</button>
-									<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-															
-								</div>
-								
-							</div><!-- /.action -->
-						</div><!-- /.cart -->
-					</div>	
-					</div>		        
-						
-	    
-    </div><!-- /.sidebar-widget -->
-</div>
-<!-- ============================================== HOT DEALS: END ============================================== -->					
-
-<!-- ============================================== NEWSLETTER ============================================== -->
-<div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
-	<h3 class="section-title">Newsletters</h3>
-	<div class="sidebar-widget-body outer-top-xs">
-		<p>Sign Up for Our Newsletter!</p>
-        <form>
-        	 <div class="form-group">
-			    <label class="sr-only" for="exampleInputEmail1">Email address</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Subscribe to our newsletter">
-			  </div>
-			<button class="btn btn-primary">Subscribe</button>
-		</form>
-	</div><!-- /.sidebar-widget-body -->
-</div><!-- /.sidebar-widget -->
-<!-- ============================================== NEWSLETTER: END ============================================== -->
-
-<!-- ============================================== Testimonials============================================== -->
-<div class="sidebar-widget  wow fadeInUp outer-top-vs ">
-	<div id="advertisement" class="advertisement">
-        <div class="item">
-            <div class="avatar"><img src="assets\images\testimonials\member1.png" alt="Image"></div>
-		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-		<div class="clients_author">John Doe	<span>Abc Company</span>	</div><!-- /.container-fluid -->
-        </div><!-- /.item -->
-
-         <div class="item">
-         	<div class="avatar"><img src="assets\images\testimonials\member3.png" alt="Image"></div>
-		<div class="testimonials"><em>"</em>Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-		<div class="clients_author">Stephen Doe	<span>Xperia Designs</span>	</div>    
-        </div><!-- /.item -->
-
-        <div class="item">
-            <div class="avatar"><img src="assets\images\testimonials\member2.png" alt="Image"></div>
-		<div class="testimonials"><em>"</em> Vtae sodales aliq uam morbi non sem lacus port mollis. Nunc condime tum metus eud molest sed consectetuer.<em>"</em></div>
-		<div class="clients_author">Saraha Smith	<span>Datsun &amp; Co</span>	</div><!-- /.container-fluid -->
-        </div><!-- /.item -->
-
-    </div><!-- /.owl-carousel -->
-</div>
-    
-<!-- ============================================== Testimonials: END ============================================== -->
+					<!-- ============================================== PRODUCT TAGS ============================================== -->
+					<div class="sidebar-widget product-tag wow fadeInUp">
+						<h3 class="section-title">Product tags</h3>
+						<div class="sidebar-widget-body outer-top-xs">
+							<div class="tag-list" > <a th:each="cate, cstate:${listAllTag}" th:if="${cstate.index < 10}" class="item" title="Phone" href="category.html" th:text="${cate}">Phone</a>  </div>
+							<!-- /.tag-list -->
+						</div>
+						<!-- /.sidebar-widget-body -->
+					</div>
+					<!-- /.sidebar-widget -->
+					<!-- ============================================== PRODUCT TAGS : END ============================================== -->
 
  
 
@@ -345,54 +137,6 @@
 												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" th:data-echo="${image.src}">
 											</a>
 										</div>
-
-<!--										<div class="item">-->
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p18.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p19.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p20.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p21.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="6" href="#slide6">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p22.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="7" href="#slide7">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p23.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="8" href="#slide8">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p24.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
-<!--										<div class="item">-->
-
-<!--											<a class="horizontal-thumb" data-target="#owl-single-product" data-slide="9" href="#slide9">-->
-<!--												<img class="img-responsive" width="85" alt="" src="assets\images\blank.gif" data-echo="assets/images/products/p25.jpg">-->
-<!--											</a>-->
-<!--										</div>-->
 									</div><!-- /#owl-single-product-thumbnails -->
 								</div><!-- /.gallery-thumbs -->
 							</div><!-- /.single-product-gallery -->
@@ -450,12 +194,6 @@
 												<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Wishlist" th:href="@{/mywishlist(productId=${product.id})}">
 													<i class="fa fa-heart"></i>
 												</a>
-												<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="Add to Compare" href="#">
-												   <i class="fa fa-signal"></i>
-												</a>
-												<a class="btn btn-primary" data-toggle="tooltip" data-placement="right" title="E-mail" href="#">
-													<i class="fa fa-envelope"></i>
-												</a>
 											</div>
 										</div>
 
@@ -472,28 +210,22 @@
 										<div class="col-sm-2">
 											<div class="cart-quantity">
 												<div class="quant-input">
-													<div class="arrows">
-													  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-													  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-													</div>
-													<input type="text" value="1">
+<!--													<div class="arrows">-->
+<!--													  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>-->
+<!--													  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>-->
+<!--													</div>-->
+													<input type="number" id="quanty" min="1" value="1">
 											  </div>
 											</div>
 										</div>
 
 										<div class="col-sm-7">
-											<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+											<a th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
 										</div>
 
 
 									</div><!-- /.row -->
 								</div><!-- /.quantity-container -->
-
-
-
-
-
-
 							</div><!-- /.product-info -->
 						</div><!-- /.col-sm-7 -->
 					</div><!-- /.row -->
@@ -523,21 +255,18 @@
 											<div class="product-reviews">
 												<h4 class="title">Customer Reviews</h4>
 
-												<div class="reviews">
+												<div id="reviews" class="reviews">
 													<div class="review" th:each="review:${ratingByProduct}">
+														<div th:text="${review.user.name}"></div>
 														<div class="col-sm-3">
 															<div class="rating rateit-small" th:data-rateit-value="${review.star}"></div>
 														</div>
 														<div class="review-title"><span class="summary" th:text="${review.content}">We love this product</span><span class="date"><i class="fa fa-calendar"></i><span>1 days ago</span></span></div>
-
 													</div>
-
 												</div><!-- /.reviews -->
 											</div><!-- /.product-reviews -->
 
-
-
-											<div class="product-add-review" th:if="${#lists.size(ratingByProductAndUser) == 0}">
+											<div class="product-add-review" th:if="${#lists.size(ratingByProductAndUser) == 0 && #lists.size(listOPByProductAndUser) >0}">
 												<h4 class="title">Write your own review</h4>
 												<div class="review-table">
 													<div class="table-responsive">
@@ -554,23 +283,7 @@
 															</thead>
 															<tbody>
 																<tr>
-																	<td class="cell-label">Quality</td>
-																	<td><input type="radio" name="quality" class="radio" value="1"></td>
-																	<td><input type="radio" name="quality" class="radio" value="2"></td>
-																	<td><input type="radio" name="quality" class="radio" value="3"></td>
-																	<td><input type="radio" name="quality" class="radio" value="4"></td>
-																	<td><input type="radio" name="quality" class="radio" value="5"></td>
-																</tr>
-																<tr>
-																	<td class="cell-label">Price</td>
-																	<td><input type="radio" name="quality" class="radio" value="1"></td>
-																	<td><input type="radio" name="quality" class="radio" value="2"></td>
-																	<td><input type="radio" name="quality" class="radio" value="3"></td>
-																	<td><input type="radio" name="quality" class="radio" value="4"></td>
-																	<td><input type="radio" name="quality" class="radio" value="5"></td>
-																</tr>
-																<tr>
-																	<td class="cell-label">Value</td>
+																	<td class="cell-label">Rating</td>
 																	<td><input type="radio" name="quality" class="radio" value="1"></td>
 																	<td><input type="radio" name="quality" class="radio" value="2"></td>
 																	<td><input type="radio" name="quality" class="radio" value="3"></td>
@@ -587,27 +300,14 @@
 														<form role="form" class="cnt-form">
 
 															<div class="row">
-																<div class="col-sm-6">
-																	<div class="form-group">
-																		<label for="exampleInputName">Your Name <span class="astk">*</span></label>
-																		<input type="text" class="form-control txt" id="exampleInputName" placeholder="">
-																	</div><!-- /.form-group -->
-																	<div class="form-group">
-																		<label for="exampleInputSummary">Summary <span class="astk">*</span></label>
-																		<input type="text" class="form-control txt" id="exampleInputSummary" placeholder="">
-																	</div><!-- /.form-group -->
-																</div>
-
-																<div class="col-md-6">
-																	<div class="form-group">
-																		<label for="exampleInputReview">Review <span class="astk">*</span></label>
-																		<textarea class="form-control txt txt-review" id="exampleInputReview" rows="4" placeholder=""></textarea>
-																	</div><!-- /.form-group -->
-																</div>
+																<div class="form-group">
+																	<label for="exampleInputReview">Review <span class="astk">*</span></label>
+																	<textarea class="form-control txt txt-review" id="exampleInputReview" rows="4" placeholder=""></textarea>
+																</div><!-- /.form-group -->
 															</div><!-- /.row -->
 
 															<div class="action text-right">
-																<button class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
+																<button th:onclick="'addreview(' + ${product.id} +')'" class="btn btn-primary btn-upper">SUBMIT REVIEW</button>
 															</div><!-- /.action -->
 
 														</form><!-- /.cnt-form -->
@@ -623,39 +323,15 @@
 										<div class="product-tag">
 
 											<h4 class="title">Question for us</h4>
-											<form role="form" class="form-inline form-cnt" onsubmit="addQuestion()">
+											<form role="form" class="form-inline form-cnt">
 												<div class="form-container">
-
 													<div class="form-group">
 														<label for="exampleInputTag">Add Your Question: </label>
-														<input type="email" id="exampleInputTag" class="form-control txt">
+														<textarea class="form-control txt txt-review" id="exampleInputTag" rows="4" placeholder=""></textarea>
 													</div>
-													<button class="btn btn-upper btn-primary" type="submit">ADD QUESTION</button>
+													<button th:onclick="'addquestion(' + ${product.id} +')'" class="btn btn-upper btn-primary" type="submit">ADD QUESTION</button>
 												</div><!-- /.form-container -->
 											</form><!-- /.form-cnt -->
-<!--											<script>-->
-<!--												function addQuestion(){-->
-<!--													alert("success")-->
-<!--													var product = $(product)-->
-<!--													var content = $('#exampleInputTag').val();-->
-
-<!--													$.ajax({-->
-<!--														method: 'GET',-->
-<!--														url: `http://localhost:8082/api/question/add`,-->
-<!--														data:{-->
-<!--															'content': content,-->
-<!--															'product': product-->
-<!--														}-->
-<!--													}).done(function (data){-->
-<!--														if (data.data == 1){-->
-<!--															alert("Make a question succesfull")-->
-<!--														} else{-->
-<!--															alert("Error, make a question again")-->
-<!--															window.location.reload();-->
-<!--														}-->
-<!--													})-->
-<!--												}-->
-<!--											</script>-->
 
 											<form role="form" class="form-inline form-cnt">
 												<div class="form-group">
@@ -676,343 +352,46 @@
 				<section class="section featured-product wow fadeInUp">
 					<h3 class="section-title">upsell products</h3>
 					<div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
-
-						<div class="item item-carousel">
+						<div class="item item-carousel" th:each="product:${productsByTag}">
 							<div class="products">
-
-					<div class="product">
-						<div class="product-image">
-							<div class="image">
-								<a href="detail.html"><img src="assets\images\products\p1.jpg" alt=""></a>
-							</div><!-- /.image -->
+								<div class="product">
+									<div class="product-image">
+										<div class="image">
+											<a th:href="@{/product(productID=${product.id})}"><img th:each="image:${listImageGroupProduct}" th:if="${image.productId == product.id}" th:src="${image.src}" alt=""></a>
+										</div><!-- /.image -->
 
 										<div class="tag sale"><span>sale</span></div>
-						</div><!-- /.product-image -->
+									</div><!-- /.product-image -->
 
+									<div class="product-info text-left">
+										<h3 class="name"><a th:href="@{/product(productID=${product.id})}" th:text="${product.name}">Floral Print Buttoned</a></h3>
+										<div class="rating rateit-small" th:data-rateit-value="${product.voteEver/1}"></div>
+										<div class="description" th:text="${product.desc}"></div>
+										<div class="product-price"> $<span class="price" th:text="${product.price * (100 - product.discount) / 100}">  </span> $<span class="price-before-discount" th:text="${product.price}"></span> </div>
 
-						<div class="product-info text-left">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-							<div class="description"></div>
-
-							<div class="product-price">
-								<span class="price">
-									$650.99				</span>
-															 <span class="price-before-discount">$ 800</span>
-
-							</div><!-- /.product-price -->
-
-						</div><!-- /.product-info -->
+									</div><!-- /.product-info -->
 									<div class="cart clearfix animate-effect">
-								<div class="action">
-									<ul class="list-unstyled">
-										<li class="add-cart-button btn-group">
-											<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
-											<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
+										<div class="action">
+											<ul class="list-unstyled">
+												<li class="add-cart-button btn-group">
+													<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary icon" data-toggle="dropdown" type="button">
+														<i class="fa fa-shopping-cart"></i>
+													</button>
+<!--													<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary cart-btn" type="button">Add to cart</button>												</li>-->
 
-										</li>
-
-										<li class="lnk wishlist">
-											<a class="add-to-cart"  title="Wishlist">
-												 <i class="icon fa fa-heart"></i>
-											</a>
-										</li>
-
-										<li class="lnk">
-											<a class="add-to-cart" href="detail.html" title="Compare">
-												<i class="fa fa-signal"></i>
-											</a>
-										</li>
-									</ul>
-								</div><!-- /.action -->
-							</div><!-- /.cart -->
-							</div><!-- /.product -->
+												<li class="lnk wishlist">
+													<a th:href="@{/mywishlist(productId=${product.id})}" class="add-to-cart"  title="Wishlist">
+														<i class="icon fa fa-heart"></i>
+													</a>
+												</li>
+											</ul>
+											</div><!-- /.action -->
+									</div><!-- /.cart -->
+								</div><!-- /.product -->
 
 							</div><!-- /.products -->
 						</div><!-- /.item -->
-
-						<div class="item item-carousel">
-							<div class="products">
-
-					<div class="product">
-						<div class="product-image">
-							<div class="image">
-								<a href="detail.html"><img src="assets\images\products\p2.jpg" alt=""></a>
-							</div><!-- /.image -->
-
-										<div class="tag sale"><span>sale</span></div>
-						</div><!-- /.product-image -->
-
-
-						<div class="product-info text-left">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-							<div class="description"></div>
-
-							<div class="product-price">
-								<span class="price">
-									$650.99				</span>
-															 <span class="price-before-discount">$ 800</span>
-
-							</div><!-- /.product-price -->
-
-						</div><!-- /.product-info -->
-									<div class="cart clearfix animate-effect">
-								<div class="action">
-									<ul class="list-unstyled">
-										<li class="add-cart-button btn-group">
-											<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
-											<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-										</li>
-
-										<li class="lnk wishlist">
-											<a class="add-to-cart" href="detail.html" title="Wishlist">
-												 <i class="icon fa fa-heart"></i>
-											</a>
-										</li>
-
-										<li class="lnk">
-											<a class="add-to-cart" href="detail.html" title="Compare">
-												<i class="fa fa-signal"></i>
-											</a>
-										</li>
-									</ul>
-								</div><!-- /.action -->
-							</div><!-- /.cart -->
-							</div><!-- /.product -->
-
-							</div><!-- /.products -->
-						</div><!-- /.item -->
-
-						<div class="item item-carousel">
-							<div class="products">
-
-					<div class="product">
-						<div class="product-image">
-							<div class="image">
-								<a href="detail.html"><img src="assets\images\products\p3.jpg" alt=""></a>
-							</div><!-- /.image -->
-
-													<div class="tag hot"><span>hot</span></div>
-						</div><!-- /.product-image -->
-
-
-						<div class="product-info text-left">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-							<div class="description"></div>
-
-							<div class="product-price">
-								<span class="price">
-									$650.99				</span>
-															 <span class="price-before-discount">$ 800</span>
-
-							</div><!-- /.product-price -->
-
-						</div><!-- /.product-info -->
-									<div class="cart clearfix animate-effect">
-								<div class="action">
-									<ul class="list-unstyled">
-										<li class="add-cart-button btn-group">
-											<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
-											<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-										</li>
-
-										<li class="lnk wishlist">
-											<a class="add-to-cart" href="detail.html" title="Wishlist">
-												 <i class="icon fa fa-heart"></i>
-											</a>
-										</li>
-
-										<li class="lnk">
-											<a class="add-to-cart" href="detail.html" title="Compare">
-												<i class="fa fa-signal"></i>
-											</a>
-										</li>
-									</ul>
-								</div><!-- /.action -->
-							</div><!-- /.cart -->
-							</div><!-- /.product -->
-
-							</div><!-- /.products -->
-						</div><!-- /.item -->
-
-						<div class="item item-carousel">
-							<div class="products">
-
-					<div class="product">
-						<div class="product-image">
-							<div class="image">
-								<a href="detail.html"><img src="assets\images\products\p4.jpg" alt=""></a>
-							</div><!-- /.image -->
-
-							<div class="tag new"><span>new</span></div>
-						</div><!-- /.product-image -->
-
-
-						<div class="product-info text-left">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-							<div class="description"></div>
-
-							<div class="product-price">
-								<span class="price">
-									$650.99				</span>
-															 <span class="price-before-discount">$ 800</span>
-
-							</div><!-- /.product-price -->
-
-						</div><!-- /.product-info -->
-									<div class="cart clearfix animate-effect">
-								<div class="action">
-									<ul class="list-unstyled">
-										<li class="add-cart-button btn-group">
-											<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
-											<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-										</li>
-
-										<li class="lnk wishlist">
-											<a class="add-to-cart" href="detail.html" title="Wishlist">
-												 <i class="icon fa fa-heart"></i>
-											</a>
-										</li>
-
-										<li class="lnk">
-											<a class="add-to-cart" href="detail.html" title="Compare">
-												<i class="fa fa-signal"></i>
-											</a>
-										</li>
-									</ul>
-								</div><!-- /.action -->
-							</div><!-- /.cart -->
-							</div><!-- /.product -->
-
-							</div><!-- /.products -->
-						</div><!-- /.item -->
-
-						<div class="item item-carousel">
-							<div class="products">
-
-					<div class="product">
-						<div class="product-image">
-							<div class="image">
-								<a href="detail.html"><img src="assets\images\blank.gif" data-echo="assets/images/products/p5.jpg" alt=""></a>
-							</div><!-- /.image -->
-
-													<div class="tag hot"><span>hot</span></div>
-						</div><!-- /.product-image -->
-
-
-						<div class="product-info text-left">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-							<div class="description"></div>
-
-							<div class="product-price">
-								<span class="price">
-									$650.99				</span>
-															 <span class="price-before-discount">$ 800</span>
-
-							</div><!-- /.product-price -->
-
-						</div><!-- /.product-info -->
-									<div class="cart clearfix animate-effect">
-								<div class="action">
-									<ul class="list-unstyled">
-										<li class="add-cart-button btn-group">
-											<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
-											<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-										</li>
-
-										<li class="lnk wishlist">
-											<a class="add-to-cart" href="detail.html" title="Wishlist">
-												 <i class="icon fa fa-heart"></i>
-											</a>
-										</li>
-
-										<li class="lnk">
-											<a class="add-to-cart" href="detail.html" title="Compare">
-												<i class="fa fa-signal"></i>
-											</a>
-										</li>
-									</ul>
-								</div><!-- /.action -->
-							</div><!-- /.cart -->
-							</div><!-- /.product -->
-
-							</div><!-- /.products -->
-						</div><!-- /.item -->
-
-						<div class="item item-carousel">
-							<div class="products">
-
-					<div class="product">
-						<div class="product-image">
-							<div class="image">
-								<a href="detail.html"><img src="assets\images\blank.gif" data-echo="assets/images/products/p6.jpg" alt=""></a>
-							</div><!-- /.image -->
-
-							<div class="tag new"><span>new</span></div>
-						</div><!-- /.product-image -->
-
-
-						<div class="product-info text-left">
-							<h3 class="name"><a href="detail.html">Floral Print Buttoned</a></h3>
-							<div class="rating rateit-small"></div>
-							<div class="description"></div>
-
-							<div class="product-price">
-								<span class="price">
-									$650.99				</span>
-															 <span class="price-before-discount">$ 800</span>
-
-							</div><!-- /.product-price -->
-
-						</div><!-- /.product-info -->
-									<div class="cart clearfix animate-effect">
-								<div class="action">
-									<ul class="list-unstyled">
-										<li class="add-cart-button btn-group">
-											<button class="btn btn-primary icon" data-toggle="dropdown" type="button">
-												<i class="fa fa-shopping-cart"></i>
-											</button>
-											<button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-
-										</li>
-
-										<li class="lnk wishlist">
-											<a class="add-to-cart" href="detail.html" title="Wishlist">
-												 <i class="icon fa fa-heart"></i>
-											</a>
-										</li>
-
-										<li class="lnk">
-											<a class="add-to-cart" href="detail.html" title="Compare">
-												<i class="fa fa-signal"></i>
-											</a>
-										</li>
-									</ul>
-								</div><!-- /.action -->
-							</div><!-- /.cart -->
-							</div><!-- /.product -->
-
-							</div><!-- /.products -->
-						</div><!-- /.item -->
-							</div><!-- /.home-owl-carousel -->
+					</div><!-- /.home-owl-carousel -->
 				</section><!-- /.section -->
 <!-- ============================================== UPSELL PRODUCTS : END ============================================== -->
 			
@@ -1091,140 +470,11 @@
 </div><!-- /.body-content -->
 
 <!-- ============================================================= FOOTER ============================================================= -->
-<footer id="footer" class="footer color-bg">
-
-
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="module-heading">
-                        <h4 class="module-title">Contact Us</h4>
-                    </div><!-- /.module-heading -->
-
-                    <div class="module-body">
-        <ul class="toggle-footer" style="">
-            <li class="media">
-                <div class="pull-left">
-                     <span class="icon fa-stack fa-lg">
-                            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <p>ThemesGround, 789 Main rd, Anytown, CA 12345 USA</p>
-                </div>
-            </li>
-
-              <li class="media">
-                <div class="pull-left">
-                     <span class="icon fa-stack fa-lg">
-                      <i class="fa fa-mobile fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <p>+(888) 123-4567<br>+(888) 456-7890</p>
-                </div>
-            </li>
-
-              <li class="media">
-                <div class="pull-left">
-                     <span class="icon fa-stack fa-lg">
-                      <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                    </span>
-                </div>
-                <div class="media-body">
-                    <span><a href="#">flipmart@themesground.com</a></span>
-                </div>
-            </li>
-              
-            </ul>
-    </div><!-- /.module-body -->
-                </div><!-- /.col -->
-
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="module-heading">
-                        <h4 class="module-title">Customer Service</h4>
-                    </div><!-- /.module-heading -->
-
-                    <div class="module-body">
-                        <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="Contact us">My Account</a></li>
-                <li><a href="#" title="About us">Order History</a></li>
-                <li><a href="#" title="faq">FAQ</a></li>
-                <li><a href="#" title="Popular Searches">Specials</a></li>
-                <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
-                        </ul>
-                    </div><!-- /.module-body -->
-                </div><!-- /.col -->
-
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="module-heading">
-                        <h4 class="module-title">Corporation</h4>
-                    </div><!-- /.module-heading -->
-
-                    <div class="module-body">
-                        <ul class='list-unstyled'>
-                          <li class="first"><a title="Your Account" href="#">About us</a></li>
-                <li><a title="Information" href="#">Customer Service</a></li>
-                <li><a title="Addresses" href="#">Company</a></li>
-                <li><a title="Addresses" href="#">Investor Relations</a></li>
-                <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>
-                        </ul>
-                    </div><!-- /.module-body -->
-                </div><!-- /.col -->
-
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="module-heading">
-                        <h4 class="module-title">Why Choose Us</h4>
-                    </div><!-- /.module-heading -->
-
-                    <div class="module-body">
-                        <ul class='list-unstyled'>
-                            <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
-                <li><a href="#" title="Blog">Blog</a></li>
-                <li><a href="#" title="Company">Company</a></li>
-                <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
-                        </ul>
-                    </div><!-- /.module-body -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="copyright-bar">
-        <div class="container">
-            <div class="col-xs-12 col-sm-6 no-padding social">
-                <ul class="link">
-                  <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
-                  <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
-                  <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#" title="GooglePlus"></a></li>
-                  <li class="rss pull-left"><a target="_blank" rel="nofollow" href="#" title="RSS"></a></li>
-                  <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="#" title="PInterest"></a></li>
-                  <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a></li>
-                  <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-6 no-padding">
-                <div class="clearfix payment-methods">
-                    <ul>
-                        <li><img src="assets\images\payments\1.png" alt=""></li>
-                        <li><img src="assets\images\payments\2.png" alt=""></li>
-                        <li><img src="assets\images\payments\3.png" alt=""></li>
-                        <li><img src="assets\images\payments\4.png" alt=""></li>
-                        <li><img src="assets\images\payments\5.png" alt=""></li>
-                    </ul>
-                </div><!-- /.payment-methods -->
-            </div>
-        </div>
-    </div>
-</footer>
+		<div th:insert="include/homeFooter.html"></div>
 <!-- ============================================================= FOOTER : END============================================================= -->
 
-
 	<!-- For demo purposes – can be removed on production -->
-	
-	
+
 	<!-- For demo purposes – can be removed on production : End -->
 
 	<!-- JavaScripts placed at the end of the document so the pages load faster -->
@@ -1243,6 +493,9 @@
     <script src="assets\js\bootstrap-select.min.js"></script>
     <script src="assets\js\wow.min.js"></script>
 	<script src="assets\js\scripts.js"></script>
+
+	<script src="assets\js\listcart.js"></script>
+	<script src="assets\js\reviewquestion.js"></script>
 
 </body>
 </html>

@@ -11,7 +11,11 @@ public interface UserServiceImp {
 
     boolean login(String email, String password);
 
-    UserDto getUserByEmail(String email);
+    User getUserByEmail(String email);
 
     boolean saveUser(String email, String name, int phone, String password);
+
+    boolean changePassword(String password, String email);
+
+    boolean changeInfor(User user);
 }

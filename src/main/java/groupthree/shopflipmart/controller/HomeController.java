@@ -1,9 +1,11 @@
 package groupthree.shopflipmart.controller;
 
+import groupthree.shopflipmart.dto.CartDTO;
 import groupthree.shopflipmart.entity.Category;
 import groupthree.shopflipmart.entity.Product;
 import groupthree.shopflipmart.entity.User;
 import groupthree.shopflipmart.repository.CategoryRepository;
+import groupthree.shopflipmart.service.Imp.CategoryServiceImp;
 import groupthree.shopflipmart.service.Imp.ImageServiceImp;
 import groupthree.shopflipmart.service.Imp.ProductServiceImp;
 import groupthree.shopflipmart.service.Imp.UserServiceImp;
@@ -17,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -37,23 +41,12 @@ public class HomeController {
     ProductServiceImp productServiceImp;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    CategoryServiceImp categoryServiceImp;
 
     @GetMapping("")
-    public ModelAndView home(HttpServletRequest request) {
+    public ModelAndView home(HttpServletRequest request, HttpSession session) {
 
-        ModelAndView modelAndView = new ModelAndView("home");
-//        Cookie[] cookies = request.getCookies();
-//        String email = "";
-//
-//        if (cookies != null && cookies.length > 0) {
-//            for (Cookie cookie : cookies) {
-//                if (cookie.getName().equals("username")) {
-//                    email += cookie.getValue();
-//                    break;
-//                }
-//            }
-//        }
+        ModelAndView mav = new ModelAndView("home");
 
         List<String> listClass = new ArrayList<>();
         listClass.add("icon fa fa-shopping-bag");
@@ -66,17 +59,16 @@ public class HomeController {
         listClass.add("icon fa fa-futbol-o");
         listClass.add("icon fa fa-envira");
 
-//        modelAndView.addObject("user", userServiceImp.getUserByEmail(email));
-        modelAndView.addObject("listcategory", categoryRepository.findAll());
-        modelAndView.addObject("listTagWithCategory", productServiceImp.listTagWithCategory());
-        modelAndView.addObject("listClass", listClass);
-        modelAndView.addObject("listBestSeller", productServiceImp.listProductBestSeller());
-        modelAndView.addObject("listNewProduct", productServiceImp.getNewProducts());
-        modelAndView.addObject("listImageGroupProduct", imageServiceImp.getAllImageGroupByProduct());
-        modelAndView.addObject("listTopDiscount", productServiceImp.getTopDiscount());
-        modelAndView.addObject("listTopVoteEver", productServiceImp.getTop4VoteEver());
-        modelAndView.addObject("listAllTag", productServiceImp.getAllTag());
+        mav.addObject("listcategory", categoryServiceImp.findAll());
+        mav.addObject("listTagWithCategory", productServiceImp.listTagWithCategory());
+        mav.addObject("listClass", listClass);
+        mav.addObject("listBestSeller", productServiceImp.listProductBestSeller());
+        mav.addObject("listNewProduct", productServiceImp.getNewProducts());
+        mav.addObject("listImageGroupProduct", imageServiceImp.getAllImageGroupByProduct());
+        mav.addObject("listTopDiscount", productServiceImp.getTopDiscount());
+        mav.addObject("listTopVoteEver", productServiceImp.getTop4VoteEver());
+        mav.addObject("listAllTag", productServiceImp.getAllTag());
 
-        return modelAndView;
+        return mav;
     }
 }

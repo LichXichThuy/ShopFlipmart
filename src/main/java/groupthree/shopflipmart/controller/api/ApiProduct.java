@@ -1,7 +1,7 @@
 package groupthree.shopflipmart.controller.api;
 
 import com.google.gson.Gson;
-import groupthree.shopflipmart.dto.ProductDTO;
+import groupthree.shopflipmart.entity.Product;
 import groupthree.shopflipmart.payload.ResponseData;
 import groupthree.shopflipmart.service.Imp.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ public class ApiProduct {
     ProductServiceImp productServiceImp;
 
     @GetMapping("/add")
-    public ResponseEntity<?> addProduct(@RequestBody ProductDTO productDTO){
+    public ResponseEntity<?> addProduct(@RequestBody Product product){
         Gson gson = new Gson();
-        String data = gson.toJson(productServiceImp.saveProduct(productDTO));
+        String data = gson.toJson(productServiceImp.saveProduct(product));
 
         ResponseData responseData = new ResponseData();
         responseData.setData(data);

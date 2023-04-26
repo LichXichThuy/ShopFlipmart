@@ -28,11 +28,12 @@ public class SecurityConfig {
                 .cors()
                 .and().authorizeRequests()
                 .antMatchers("/login").permitAll()
+                .antMatchers("/signup").permitAll()
                 .antMatchers("/assets/**").anonymous()
                 .antMatchers("/assets/**").permitAll()
                 .anyRequest().authenticated()
 //                .and().httpBasic()
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and().csrf().disable()
                 .addFilterBefore(filterChain, UsernamePasswordAuthenticationFilter.class)
         ;

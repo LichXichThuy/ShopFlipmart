@@ -6,6 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface QuestionServiceImp {
 
-    @Transactional
-    public boolean ask(String content, Product product, User user);
+    boolean saveQuestion(String content, Product product, User user);
 }

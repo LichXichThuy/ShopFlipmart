@@ -87,21 +87,7 @@ public class ProductService implements ProductServiceImp {
     }
 
     @Override
-    public Boolean saveProduct(ProductDTO productDTO) {
-        Category category = new Category();
-        category.setId(productDTO.getCateId());
-
-        Product product = new Product();
-        product.setName(productDTO.getName());
-        product.setDesc(productDTO.getDesc());
-        product.setTag(productDTO.getTag());
-        product.setPrice(productDTO.getPrice());
-        product.setDiscount(productDTO.getDiscount());
-        product.setVoteEver(productDTO.getVoteEver());
-        product.setAmount(productDTO.getAmount());
-        product.setInputDate(productDTO.getInputDate());
-        product.setCategory(category);
-
+    public Boolean saveProduct(Product product) {
         try {
             productRepository.save(product);
             return true;
@@ -145,10 +131,9 @@ public class ProductService implements ProductServiceImp {
     }
 
     @Override
-    public List<ProductDTO> getLoveProducts(User user) {
-        List<Product> productList = productRepository.getLoveProducts(user);
+    public List<Product> getLoveProducts(User user) {
 
-        return  listProductDTO.getProductDTOList(productList);
+        return  productRepository.getLoveProducts(user);
     }
 
     @Override

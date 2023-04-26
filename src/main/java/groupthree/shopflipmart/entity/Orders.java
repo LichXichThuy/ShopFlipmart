@@ -21,6 +21,9 @@ public class Orders {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "address")
+    private String address;
+
     @ManyToOne
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
@@ -31,6 +34,14 @@ public class Orders {
 
     @OneToMany(mappedBy = "orders")
     private Set<OrderProduct> orderProduct;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public int getId() {
         return id;

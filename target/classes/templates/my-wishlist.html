@@ -10,7 +10,7 @@
 	<meta name="keywords" content="MediaCenter, Template, eCommerce">
 	<meta name="robots" content="all">
 
-	<title>Flipmart premium HTML5 & CSS3 Template</title>
+	<title>My Wishlist</title>
 
 	<!-- Bootstrap Core CSS -->
 	<link rel="stylesheet" href="assets\css\bootstrap.min.css">
@@ -64,7 +64,7 @@
 								<th colspan="4" class="heading-title">My Wishlist</th>
 							</tr>
 							</thead>
-							<tbody>
+							<tbody id="body">
 							<tr th:each="product:${listProduct}">
 								<td class="col-md-2"><img th:each="image:${listImageGroupProduct}" th:if="${image.productId == product.id}" th:src="${image.src}" alt="imga"></td>
 								<td class="col-md-7">
@@ -76,10 +76,10 @@
 									</div>
 								</td>
 								<td class="col-md-2">
-									<a href="#" class="btn-upper btn btn-primary">Add to cart</a>
+									<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary cart-btn" type="button">Add to cart</button>
 								</td>
 								<td class="col-md-1 close-btn">
-									<a href="#" class=""><i class="fa fa-times"></i></a>
+									<button th:onclick="'deletewishlist('+${product.id}+')'" class=""><i class="fa fa-times"></i></button>
 								</td>
 							</tr>
 							</tbody>
@@ -181,6 +181,8 @@
 <!-- For demo purposes – can be removed on production -->
 
 <script src="switchstylesheet/switchstylesheet.js"></script>
+<script src="assets\js\listcart.js"></script>
+<script src="assets\js\wishlist.js"></script>
 
 <script>
 	$(document).ready(function(){

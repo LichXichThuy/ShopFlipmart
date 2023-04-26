@@ -30,4 +30,15 @@ public class WishlistService implements WishlistServiceImp {
             }
         }
     }
+
+    @Override
+    public boolean deleteByProductAndUser(Product product, User user) {
+        try {
+            wishlistRepo.deleteByProductAndUser(product, user);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error delete wishlist: " + e.getMessage());
+            return false;
+        }
+    }
 }

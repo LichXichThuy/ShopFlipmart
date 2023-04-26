@@ -27,16 +27,16 @@ $(document).ready(function (){
 
         if (email=='' || name=='' || phone=='' || password=='' || cpassword==''){
             alert("You must enter all the information")
-            window.location.reload()
+            window.location.replace("http://localhost:8082/login")
         }else if (!email.includes('@')){
             alert("You must enter email contain @")
-            window.location.reload()
+            window.location.replace("http://localhost:8082/login")
         }else if (password.localeCompare(cpassword)){
             alert("You must enter password equal confirm password")
-            window.location.reload()
+            window.location.replace("http://localhost:8082/login")
         }else {
             $.ajax({
-                url: 'http://localhost:8082/signup',
+                url: 'http://localhost:8082/api/signup',
                 method: 'post',
                 data:{
                     'email': email,
@@ -46,12 +46,11 @@ $(document).ready(function (){
                 }
             }).done(function (res){
                 if (res.data){
-                    alert("Signup success!");
-                    window.location.replace('http://localhost:8082')
+                    alert("Signup success! Login to be continue");
                 }else {
-                    alert("Email already exists")
-                    window.location.reload()
+                    alert("Email already exists, change email to be signup")
                 }
+                window.location.reload()
             })
         }
     })

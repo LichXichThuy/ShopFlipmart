@@ -6,6 +6,7 @@ import groupthree.shopflipmart.entity.Category;
 import groupthree.shopflipmart.entity.Product;
 import groupthree.shopflipmart.payload.ResponseData;
 import groupthree.shopflipmart.repository.CategoryRepository;
+import groupthree.shopflipmart.service.Imp.CategoryServiceImp;
 import groupthree.shopflipmart.service.Imp.ImageServiceImp;
 import groupthree.shopflipmart.service.Imp.ProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class CategoryController {
     ProductServiceImp productServiceImp;
 
     @Autowired
-    CategoryRepository categoryRepository;
+    CategoryServiceImp categoryServiceImp;
 
     @Autowired
     ImageServiceImp imageServiceImp;
@@ -42,18 +43,32 @@ public class CategoryController {
                                  @RequestParam(required = false) String tag
                            ){
         List<ProductDTO> dtoList = new ArrayList<>();
-        List<Category> categoryList = categoryRepository.findAll();
+        List<Category> categoryList = categoryServiceImp.findAll();
         if (tag == null){
             dtoList = productServiceImp.listProductWithCategory(cateId);
         }else {
             dtoList = productServiceImp.allProductWithTag(tag);
         }
 
-        ModelAndView modelAndView = new ModelAndView("category");
-        modelAndView.addObject("listcategory", categoryList);
-        modelAndView.addObject("listProduct", dtoList);
-        modelAndView.addObject("listImageGroupProduct", imageServiceImp.getAllImageGroupByProduct());
+        List<String> listClass = new ArrayList<>();
+        listClass.add("icon fa fa-shopping-bag");
+        listClass.add("icon fa fa-laptop");
+        listClass.add("icon fa fa-paw");
+        listClass.add("icon fa fa-clock-o");
+        listClass.add("icon fa fa-diamond");
+        listClass.add("icon fa fa-heartbeat");
+        listClass.add("icon fa fa-paper-plane");
+        listClass.add("icon fa fa-futbol-o");
+        listClass.add("icon fa fa-envira");
 
-        return modelAndView;
+        ModelAndView mav = new ModelAndView("category");
+        mav.addObject("listClass", listClass);
+        mav.addObject("listcategory", categoryList);
+        mav.addObject("listTagWithCategory", productServiceImp.listTagWithCategory());
+        mav.addObject("listProduct", dtoList);
+        mav.addObject("listImageGroupProduct", imageServiceImp.getAllImageGroupByProduct());
+        mav.addObject("listAllTag", productServiceImp.getAllTag());
+
+        return mav;
     }
 }

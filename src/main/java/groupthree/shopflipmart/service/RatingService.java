@@ -31,4 +31,15 @@ public class RatingService implements RatingServiceImp {
     public List<Rating> getByProductAndUser(Product product, User user) {
         return ratingRepository.findRatingByProductAndUser(product, user);
     }
+
+    @Override
+    public boolean saveRating(Rating rating) {
+        try {
+            ratingRepository.save(rating);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error save Rating: " + e.getMessage());
+            return false;
+        }
+    }
 }

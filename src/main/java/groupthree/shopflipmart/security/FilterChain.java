@@ -31,6 +31,9 @@ public class FilterChain extends OncePerRequestFilter {
 
         Cookie[] cookies = req.getCookies();
         boolean authenticated = false;
+        String requestURI = req.getRequestURI();
+        String loginPageURI = req.getContextPath() + "/login";
+        String homePageURI = req.getContextPath() + "";
 
         if (cookies != null && cookies.length > 0) {
             for (Cookie cookie : cookies) {
@@ -43,15 +46,19 @@ public class FilterChain extends OncePerRequestFilter {
         if (authenticated){
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("","",new ArrayList<>());
             SecurityContextHolder.getContext().setAuthentication(authentication);
+            // Redirect home page if request is login page
+            if (requestURI.equals(loginPageURI)){
+                resp.sendRedirect(homePageURI);
+                return;
+            }
         }
-//        else{
-//            System.out.println("False");
-//            resp.sendRedirect("http://localhost:8082/login");
-//        }
-//        catch (Exception e){
-//            System.out.println("Catch");
-//            resp.sendRedirect("http://localhost:8082/login");
-//        }
+        else {
+            // Check if current request is already the login page
+            if (!requestURI.equals(loginPageURI) && !requestURI.contains("assets")) {
+                resp.sendRedirect(loginPageURI);
+                return;
+            }
+        }
         filterChain.doFilter(req,resp);
     }
 }

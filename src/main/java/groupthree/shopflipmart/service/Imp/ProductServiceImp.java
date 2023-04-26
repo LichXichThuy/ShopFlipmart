@@ -12,7 +12,7 @@ public interface ProductServiceImp {
 
     List<ProductDTO> allProductWithTag(String tag);
 
-    Boolean saveProduct(ProductDTO productDTO);
+    Boolean saveProduct(Product product);
 
     List<ProductDTO> listProductWithCategory(int cateId);
 
@@ -20,7 +20,7 @@ public interface ProductServiceImp {
 
     List<ProductDTO> getNewProducts();
 
-    List<ProductDTO> getLoveProducts(User user);
+    List<Product> getLoveProducts(User user);
 
     List<ProductDTO> getTopDiscount();
 

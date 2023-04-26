@@ -10,8 +10,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface QuestionRepo extends JpaRepository<Question, Integer> {
-
-    @Modifying
-    @Query("update question q set q.content = ?1 where q.product = ?2 and q.user = ?3")
-    public int ask(String content, Product product, User user);
 }

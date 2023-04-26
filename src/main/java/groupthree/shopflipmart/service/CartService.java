@@ -47,6 +47,9 @@ public class CartService implements CartServiceImp {
                 itemCart.setImage(imageServiceImp.getFirstImageByProduct(product).getSrc());
 
             }
+            if (itemCart.getAmount() > itemCart.getProduct().getAmount()) {
+                itemCart.setAmount(itemCart.getProduct().getAmount());
+            }
             cart.put(id, itemCart);
         }catch (Exception e){
             System.err.println("Error in CartService: " + e.getMessage());

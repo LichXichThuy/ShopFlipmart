@@ -1,6 +1,7 @@
 package groupthree.shopflipmart.service;
 
 import groupthree.shopflipmart.dto.UserDto;
+import groupthree.shopflipmart.entity.Role;
 import groupthree.shopflipmart.entity.User;
 import groupthree.shopflipmart.repository.UserRepository;
 import groupthree.shopflipmart.service.Imp.UserServiceImp;
@@ -27,26 +28,50 @@ public class UserService implements UserServiceImp {
     }
 
     @Override
-    public UserDto getUserByEmail(String email) {
-        UserDto userDto = new UserDto();
-        userDto.getUserDto(userRepository.findByEmail(email));
+    public User getUserByEmail(String email) {
 
-        return userDto;
+        return userRepository.findByEmail(email);
     }
 
     @Override
     public boolean saveUser(String email, String name, int phone, String password) {
         User user = new User();
+        Role role = new Role();
+        role.setId(3);
+
         user.setEmail(email);
         user.setPhoneNum(phone);
         user.setName(name);
         user.setPassword(password);
+        user.setRole(role);
 
         try {
             userRepository.save(user);
             return true;
         } catch (Exception e){
             System.err.println("Error save user in UserService + " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean changePassword(String password, String email) {
+        try {
+            userRepository.updatePasswordByEmail(password, email);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error change password: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean changeInfor(User user) {
+        try {
+            userRepository.save(user);
+            return true;
+        }catch (Exception e){
+            System.out.println("Error change information: " + e.getMessage());
             return false;
         }
     }

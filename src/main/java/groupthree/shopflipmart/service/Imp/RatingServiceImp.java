@@ -13,4 +13,6 @@ public interface RatingServiceImp {
     List<Rating> getAllByProduct(Product product);
 
     List<Rating> getByProductAndUser(Product product, User user);
+
+    boolean saveRating(Rating rating);
 }
