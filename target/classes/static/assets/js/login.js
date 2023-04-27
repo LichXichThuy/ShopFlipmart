@@ -3,19 +3,26 @@ $(document).ready(function (){
         e.preventDefault();
         const email = $('#exampleInputEmail').val();
         const password = $('#exampleInputPassword1').val();
-
-        $.ajax({
-            url: 'http://localhost:8082/login',
-            method: 'post',
-            data:{
-                'email': email,
-                'password': password
-            }
-        }).done(function (data){
-            if (data.data == 1){
-                window.location.replace('http://localhost:8082/')
-            }
-        })
+        alert(password)
+        if (password == ""){
+            alert("You must input password")
+        }else {
+            $.ajax({
+                url: 'http://localhost:8082/login',
+                method: 'post',
+                data:{
+                    'email': email,
+                    'password': password
+                }
+            }).done(function (data){
+                if (data.data == 1){
+                    window.location.replace('http://localhost:8082/')
+                }else {
+                    alert("Password is incorect, try again")
+                    window.location.reload();
+                }
+            })
+        }
     });
     $('#btn-signup').click(function (e){
         e.preventDefault();
