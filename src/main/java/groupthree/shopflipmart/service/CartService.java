@@ -50,7 +50,10 @@ public class CartService implements CartServiceImp {
             if (itemCart.getAmount() > itemCart.getProduct().getAmount()) {
                 itemCart.setAmount(itemCart.getProduct().getAmount());
             }
-            cart.put(id, itemCart);
+            if (itemCart.getAmount() != 0){
+                cart.put(id, itemCart);
+            }
+
         }catch (Exception e){
             System.err.println("Error in CartService: " + e.getMessage());
         }

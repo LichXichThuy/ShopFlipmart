@@ -75,7 +75,7 @@
 										<span class="price-strike">$</span><span class="price-strike" th:text="${product.price}"></span>
 									</div>
 								</td>
-								<td class="col-md-2">
+								<td class="col-md-2" th:if="${product.amount > 0}">
 									<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary cart-btn" type="button">Add to cart</button>
 								</td>
 								<td class="col-md-1 close-btn">

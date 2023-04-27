@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,6 +63,8 @@ public class ProductService implements ProductServiceImp {
             }
             // Đẩy dữ liệu lên redis
             redisTemplate.opsForValue().set("listTagWithCategory", gson.toJson(list));
+            redisTemplate.expire("listTagWithCategory", 3, TimeUnit.DAYS);
+
         }else {
             // Chuyển dữ liệu từ String sang List<List<ProductDTO>>
             list = gson.fromJson(data, new TypeToken<List<List<String>>>(){}.getType());

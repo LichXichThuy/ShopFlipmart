@@ -155,13 +155,20 @@ public class ApiCart {
                             data.setDesc("Checkout success, continue to shopping");
                         }else {
                             orderProductServiceImp.deleteOP(orderProduct);
+                            data.setData(false);
                         }
                     }else {
                         ordersServiceImp.deleteOrders(orders);
+                        data.setData(false);
                     }
                 }
             }
         }else data.setDesc("Your cart have not product");
+
+        boolean check = (boolean) data.getData();
+        if (check){
+            session.invalidate();
+        }
 
         return new ResponseEntity<>(data, HttpStatus.OK);
     }

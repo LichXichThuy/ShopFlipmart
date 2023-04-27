@@ -85,7 +85,7 @@
 
 									<div class="cart clearfix animate-effect">
 										<div class="action">
-											<div class="add-cart-button btn-group">
+											<div class="add-cart-button btn-group" th:if="${product.amount > 0}">
 												<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
 												<button th:onclick="'addCart(' + ${product.id} + ')'"  class="btn btn-primary cart-btn" type="button">Add to cart</button>
 											</div>
@@ -219,7 +219,7 @@
 											</div>
 										</div>
 
-										<div class="col-sm-7">
+										<div class="col-sm-7" th:if="${product.amount > 0}">
 											<a th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
 										</div>
 
@@ -373,7 +373,7 @@
 									<div class="cart clearfix animate-effect">
 										<div class="action">
 											<ul class="list-unstyled">
-												<li class="add-cart-button btn-group">
+												<li class="add-cart-button btn-group" th:if="${product.amount > 0}">
 													<button th:onclick="'addCart(' + ${product.id} + ')'" class="btn btn-primary icon" data-toggle="dropdown" type="button">
 														<i class="fa fa-shopping-cart"></i>
 													</button>

@@ -12,7 +12,7 @@ public class ShopflipmartApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShopflipmartApplication.class, args);
-		System.out.println("http://localhost:8082/login");
+		System.out.println("http://localhost:8082");
 
 	}
 
