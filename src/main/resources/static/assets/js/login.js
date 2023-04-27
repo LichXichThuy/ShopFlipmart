@@ -43,7 +43,7 @@ $(document).ready(function (){
         }else {
             $.ajax({
                 url: 'http://localhost:8082/api/signup',
-                method: 'post',
+                method: 'POST',
                 data:{
                     'email': email,
                     'name': name,
@@ -59,5 +59,5 @@ $(document).ready(function (){
                 window.location.reload()
             })
         }
-    })
+    });
 })

@@ -54,7 +54,7 @@ public class FilterChain extends OncePerRequestFilter {
         }
         else {
             // Check if current request is already the login page
-            if (!requestURI.equals(loginPageURI) && !requestURI.contains("assets")) {
+            if (!requestURI.equals(loginPageURI) && !requestURI.contains("assets") && !requestURI.contains("/api/signup")) {
                 resp.sendRedirect(loginPageURI);
                 return;
             }
